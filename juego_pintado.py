@@ -21,9 +21,24 @@ def square(start, end):
 
     end_fill()
 
+'''función añadida que dibuja un círculo'''
 def circle(start, end):
     "Draw circle from start to end."
-    pass  # TODO
+    rad = math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2)
+    center_x = start.x + (end.x - start.x) / 2
+    center_y = start.y + (end.y - start.y) / 2
+    center = vector (center_x, center_y)
+    
+    up()
+    goto (center.x, center.y - rad)
+    down ()
+    circle = 2 * math.pi * rad
+    begin_fill()
+    
+    for i in range (360):
+        forward (circle / 360)
+        left(1)
+    end_fill()
 
 def rectangle(start, end):
     "Draw rectangle from start to end."
@@ -59,6 +74,8 @@ onkey(lambda: color('white'), 'W')
 onkey(lambda: color('green'), 'G')
 onkey(lambda: color('blue'), 'B')
 onkey(lambda: color('red'), 'R')
+'''color añadido para poder dibujar con el color amarillo, necesario teclear "Y" en mayus'''
+onkey(lambda: color('yellow'), 'Y')
 onkey(lambda: store('shape', line), 'l')
 onkey(lambda: store('shape', square), 's')
 onkey(lambda: store('shape', circle), 'c')
