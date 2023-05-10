@@ -18,6 +18,18 @@ def inside(head):
     """Return True if head inside boundaries."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
+'''Se añade la función que hace que la comida se mueva un paso a la vez a cierta posición aleatoria'''
+def move_food():
+    """Move food one step in a random direction."""
+    directions = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
+    direction = directions[randrange(4)]
+    food.move(direction)
+    
+    # condicional para saber si la comida se encuentra dentro de la ventana
+    if not inside(food):
+        # se mueve la comida a distintas posiciones
+        food.x = randrange(-19, 19) * 10
+        food.y = randrange(-19, 19) * 10
 
 def move():
     """Move snake forward one segment."""
