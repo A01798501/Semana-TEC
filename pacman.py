@@ -89,8 +89,17 @@ def world():
                 path.goto(x + 10, y + 10)
                 path.dot(2, 'white')
 
+def add_ghosts():
+    '''Se crea una función que añade dos fantasmas al juego'''
+    ghosts.append([vector(-100, 160), vector(0, 5)])
+    ghosts.append([vector(100, 160), vector(5, 0)])
+
 def move():
     "Move pacman and all ghosts."
+    #Se llama a la función add_ghosts en el momento que score = 20
+    global state
+    if state['score'] == 20 and len(ghosts) == 4:
+        add_ghosts()
     writer.undo()
     writer.write(state['score'])
 
