@@ -13,6 +13,34 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+color1 = random.randint(1,5)
+color2 = random.randint(1,5)
+#if para los 5 colores aleatorios
+if color1 != color2:
+    if color1==1:
+        color1='orange'
+    if color1==2:
+        color1='yellow'
+    if color1==3:
+        color1='blue'
+    if color1==4:
+        color1='pink'
+    if color1==5:
+        color1='green'
+        
+    if color2==1:
+        color2='orange'
+    if color2==2:
+        color2='yellow'
+    if color2==3:
+        color2='blue'
+    if color2==4:
+        color2='pink'
+    if color2==5:
+        color2='green'
+else:
+    color1='blue'
+    color2='magenta'
 
 
 def change(x, y):
@@ -74,10 +102,10 @@ def move():
 
     #se crean los segmentos de la serpiente
     for body in snake:
-        square(body.x, body.y, 9, 'black')
+        square(body.x, body.y, 9, color1)
 
     #se crea la comida
-    square(food.x, food.y, 9, 'green')
+    square(food.x, food.y, 9, color2)
     update()
 
     #tiempo de delay del movimiento de la serpiente
