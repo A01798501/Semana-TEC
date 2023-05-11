@@ -13,8 +13,9 @@ def tap(x, y):
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        #Modificamos para aumentar la velocidad del proyectil (punto rojo)
+        speed.x = (x + 200) / 15
+        speed.y = (y + 200) / 15
 
 
 def inside(xy):
@@ -63,8 +64,8 @@ def move():
     for target in targets:
         if not inside(target):
             return
-
-    ontimer(move, 50)
+#Modificamos para hacer que los balones (Puntos azules) se muevan más rápido
+    ontimer(move, 10)
 
 
 setup(420, 420, 370, 0)
