@@ -6,22 +6,20 @@ from freegames import vector
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
-
+score = 0
 
 def tap(x, y):
     """Respond to screen tap."""
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        #Modificamos para aumentar la velocidad del proyectil (punto rojo)
+        # Modificamos para aumentar la velocidad del proyectil (punto rojo)
         speed.x = (x + 200) / 15
         speed.y = (y + 200) / 15
-
 
 def inside(xy):
     """Return True if xy within screen."""
     return -200 < xy.x < 200 and -200 < xy.y < 200
-
 
 def draw():
     """Draw ball and targets."""
@@ -37,7 +35,6 @@ def draw():
 
     update()
 
-
 def move():
     """Move ball and targets."""
     if randrange(40) == 0:
@@ -47,6 +44,11 @@ def move():
 
     for target in targets:
         target.x -= 0.5
+
+        # Nueva condición para generar nuevas pelotas
+        if not inside(target):
+            target.x = 200
+            target.y = randrange(-150, 150)
 
     if inside(ball):
         speed.y -= 0.35
@@ -58,14 +60,20 @@ def move():
     for target in dupe:
         if abs(target - ball) > 13:
             targets.append(target)
+        else:
+            global score
+            score += 1
 
     draw()
 
-    for target in targets:
-        if not inside(target):
-            return
-#Modificamos para hacer que los balones (Puntos azules) se muevan más rápido
+    # Modificamos para hacer que las pelotas se muevan más rápido
     ontimer(move, 10)
+
+    # Agregamos una nueva pelota si no hay suficientes en pantalla
+    if len(targets) < 4:
+        y = randrange(-150, 150)
+        target = vector(200, y)
+        targets.append(target)
 
 
 setup(420, 420, 370, 0)
