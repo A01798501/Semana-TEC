@@ -13,6 +13,7 @@ ghosts = [
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
+#Cambiamos la matriz para modificar el tablero
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -134,7 +135,7 @@ def move():
     for point, course in ghosts:
         if abs(pacman - point) < 20:
             return
-
+#Si bajamos el numero, los fantasmas van más rapido, si lo subimos, los fantasas se alentan
     ontimer(move, 30)
 
 def change(x, y):
