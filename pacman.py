@@ -19,7 +19,8 @@ ghosts = [
     [vector(100, -160), vector(-5, 0)],
 ]
 '''
-Cambiamos la matriz para modificar el tablero. Cada número en la matriz representa un tipo diferente de celda en el tablero. 
+Cambiamos la matriz para modificar el tablero. 
+Cada número en la matriz representa un tipo diferente de celda en el tablero. 
 Por ejemplo, un 0 representa una celda vacía, mientras que un 1 representa una celda con una pared.
 '''
 tiles = [
@@ -84,8 +85,8 @@ def valid(point):
 
     return point.x % 20 == 0 or point.y % 20 == 0
 
+ #Función que dibuja el mapa usando path.
 def world():
-    "Función que dibuja el mapa usando path."
     bgcolor('pink')
     path.color('black')
 
@@ -106,9 +107,13 @@ def add_ghosts():
     '''Se crea una función que añade dos fantasmas al juego'''
     ghosts.append([vector(-100, 160), vector(0, 5)])
     ghosts.append([vector(100, 160), vector(5, 0)])
-
+    
+'''Este bloque define una función llamada move que se utiliza para mover Pac-Man en la dirección especificada por la variable aim. 
+La función también comprueba si Pac-Man ha chocado contra una pared o ha salido de los límites del tablero.
+Si Pac-Man come una pepita, aumenta su puntuación en 1 punto.
+'''
 def move():
-    "Move pacman and all ghosts."
+ 
     #Se llama a la función add_ghosts en el momento que score = 20
     global state
     if state['score'] == 20 and len(ghosts) == 4:
@@ -159,9 +164,10 @@ def move():
             return
 #Si bajamos el numero, los fantasmas van más rapido, si lo subimos, los fantasas se alentan
     ontimer(move, 30)
-
+    
+'''La función change que se utiliza para cambiar la dirección en la que se mueve Pac-Man en función de las teclas de dirección que el jugador presiona.
+La función actualiza la variable aim en consecuencia.'''
 def change(x, y):
-    "Change pacman aim if valid."
     if valid(pacman + vector(x, y)):
         aim.x = x
         aim.y = y
