@@ -1,7 +1,12 @@
 from random import choice
 from turtle import *
 from freegames import floor, vector
-#Este bloque 
+'''
+Este bloque define un diccionario de estado, que se utiliza para almacenar la puntuación del jugador. 
+Luego, crea dos instancias de Turtle, una para el camino que sigue Pac-Man y otra para escribir la puntuación en la pantalla. 
+También define una variable de dirección aim, que se utiliza para determinar la dirección en la que se mueve Pac-Man. 
+Finalmente, se definen las posiciones iniciales de Pac-Man y los fantasmas.
+'''
 state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
@@ -13,7 +18,10 @@ ghosts = [
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
-#Cambiamos la matriz para modificar el tablero
+'''
+Cambiamos la matriz para modificar el tablero. Cada número en la matriz representa un tipo diferente de celda en el tablero. 
+Por ejemplo, un 0 representa una celda vacía, mientras que un 1 representa una celda con una pared.
+'''
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -36,7 +44,12 @@ tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ]
-
+'''
+La función 'square' se utiliza para dibujar una celda en la pantalla. 
+Toma dos argumentos, x e y, que especifican las coordenadas de la celda. 
+Luego, dibuja un cuadrado de tamaño 20x20 píxeles en la posición dada.
+La función utiliza la instancia de Turtle llamada path para dibujar la celda.
+'''
 def square(x, y):
     "Draw square using path at (x, y)."
     path.up()
