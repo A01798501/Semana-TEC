@@ -9,7 +9,7 @@ targets = []
 score = 0
 
 def tap(x, y):
-    """Función que realiza el disparo al hacer click.."""
+    #Función que realiza el disparo al hacer click..
     if not inside(ball):
         ball.x = -199
         ball.y = -199
@@ -18,11 +18,11 @@ def tap(x, y):
         speed.y = (y + 200) / 15
 
 def inside(xy):
-    """Return True if xy within screen."""
+    #Esta función toma un vector xy como argumento y devuelve un valor booleano que indica si el vector está dentro de los límites de la pantalla.
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 def draw():
-    """Draw ball and targets."""
+    #Esta función borra la pantalla y dibuja los objetivos y la pelota en sus posiciones actuales.
     clear()
 
     for target in targets:
@@ -36,7 +36,10 @@ def draw():
     update()
 
 def move():
-    """Move ball and targets."""
+    '''Esta función se ejecuta continuamente y se encarga de actualizar las posiciones de los objetos en pantalla. 
+    Si es necesario, genera nuevos objetivos. 
+    También actualiza la posición de la pelota disparada por el jugador.
+    Si la pelota golpea un objetivo, se elimina de la lista y se suma un punto al puntaje del jugador. '''
     if randrange(40) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
