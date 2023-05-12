@@ -21,9 +21,9 @@ def square(start, end):
 
     end_fill()
 
-'''función añadida que dibuja un círculo'''
+
 def circle(start, end):
-    "Draw circle from start to end."
+    '''función añadida que dibuja un círculo'''
     rad = math.sqrt((end.x - start.x) ** 2 + (end.y - start.y) ** 2)
     center_x = start.x + (end.x - start.x) / 2
     center_y = start.y + (end.y - start.y) / 2
@@ -40,9 +40,9 @@ def circle(start, end):
         left(1)
     end_fill()
 
-#funcion rectangulo
+
 def rectangle(start, end):
-    """Draw rectangle from start to end."""
+    """Función que dibuja un rectángulo de inicio a fin."""
     up()
     goto(start.x, start.y)
     down()
@@ -56,9 +56,8 @@ def rectangle(start, end):
 
     end_fill()
 
-#FUNCION TRIANGULO
 def triangle(start, end):
-    """Draw triangle from start to end."""
+    """Función que dibuja un triángulo de principio a fin."""
     up()
     goto(start.x, start.y)
     down()

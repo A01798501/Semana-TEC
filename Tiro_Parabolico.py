@@ -9,7 +9,7 @@ targets = []
 score = 0
 
 def tap(x, y):
-    """Respond to screen tap."""
+    """Función que realiza el disparo al hacer click.."""
     if not inside(ball):
         ball.x = -199
         ball.y = -199

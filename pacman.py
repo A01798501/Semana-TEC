@@ -85,7 +85,7 @@ def valid(point):
     return point.x % 20 == 0 or point.y % 20 == 0
 
 def world():
-    "Draw world using path."
+    "Función que dibuja el mapa usando path."
     bgcolor('pink')
     path.color('black')
 
