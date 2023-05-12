@@ -1,2 +1,0 @@
-Se añadió la función de poder dibujar un círculo, dando dos clicks, indicando la medida del radio del círculo a dibujar.
-Posteriormente se añadió a la fila de colores el color amarillo, pudiendo acceder a el con la tecla Y mayúscula.
