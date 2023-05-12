@@ -27,7 +27,7 @@ def index(x, y):
 def xy(count):
     "Convert tiles count to (x, y) coordinates."
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
-
+#Modificamos 'tap' para que las letras estén al centro del cuadrado 
 def tap(x, y):
     "Update mark and hidden tiles based on tap."
     global taps
@@ -42,6 +42,16 @@ def tap(x, y):
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
+
+    if state['mark'] is not None and hide[state['mark']]:
+        x, y = xy(state['mark'])
+        up()
+        # Ajuste la posición de escritura para centrar el número
+        x += 20
+        y += 10
+        goto(x, y)
+        color('black')
+        write(tiles[state['mark']], font=('Arial', 30, 'normal'), align='center')
 
 def draw():
     "Draw image and tiles."
