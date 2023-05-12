@@ -1,52 +1,71 @@
+#Se importan las librerías y recursos a usar.
 from random import *
 from turtle import *
 from freegames import path
 
+# Se carga la imagen del carro y se inicializa una lista con las letras
+# y símbolos que se usarán para los pares de fichas.
 car = path('car.gif')
 tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '@', '#', '$', '%', '&', '*'] * 2
+
+# Se crea un diccionario para almacenar el estad	o del juego, y se inicializa
+# la lista 'hide' con valores booleanos que indican si las fichas están ocultas o no.
+# También se inicializa el contador de 'taps' en cero.
 state = {'mark': None}
 hide = [True] * 64
 taps = 0
 
+
 def square(x, y):
-    "Draw white square with black outline at (x, y)."
+    '''Función que dibuja un cuadrado blanco con borde negro en las coordenadas (x, y).'''
     up()
+    # Coordenadas donde se dibujara el cuadrado
     goto(x, y)
     down()
     color('black', 'white')
     begin_fill()
+    # Ciclo que se ejecuta 4 veces para cada uno de los lados de los cuadrados.
     for count in range(4):
         forward(50)
         left(90)
     end_fill()
 
+
 def index(x, y):
-    "Convert (x, y) coordinates to tiles index."
+    '''Función que convierte las coordenadas (x, y) en el índice correspondiente de la lista 'tiles'.'''
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
 
+
 def xy(count):
-    "Convert tiles count to (x, y) coordinates."
+    '''Función que convierte el índice de la lista 'tiles' en las coordenadas (x, y).'''
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
-#Modificamos 'tap' para que las letras estén al centro del cuadrado 
+
+
+#Modificamos 'tap' para que las letras estén al centro del cuadrado
 def tap(x, y):
-    "Update mark and hidden tiles based on tap."
+    '''Función que se ejecuta cuando se hace clic en la pantalla. Actualiza
+el estado del juego y muestra las fichas correspondientes.'''
     global taps
     taps+=1
     update_taps()
     spot = index(x, y)
     mark = state['mark']
-
+    
+    # Si no hay ficha seleccionada o si la ficha seleccionada no coincide con
+    # la anterior, se actualiza el estado para seleccionar la nueva ficha.
     if mark is None or mark == spot or tiles[mark] != tiles[spot]:
         state['mark'] = spot
+    # Si las dos fichas seleccionadas son iguales, se descubren ambas.
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-
+    
+     # Si hay una ficha seleccionada y aún está oculta, se muestra la letra en su centro.
     if state['mark'] is not None and hide[state['mark']]:
         x, y = xy(state['mark'])
         up()
-        # Ajuste la posición de escritura para centrar el número
+        # Ajuste la posición de escritura para centrar el número y/o letra.
         x += 20
         y += 10
         goto(x, y)
@@ -54,55 +73,65 @@ def tap(x, y):
         write(tiles[state['mark']], font=('Arial', 30, 'normal'), align='center')
 
 def draw():
-    "Draw image and tiles."
+    '''Función que dibuja el carro y los caractéres. '''
+    #Se limpia la pantalla.
     clear()
     goto(0, 0)
     shape(car)
     stamp()
-
+    
+    # Ciclo que dibuja los cuadrados de las fichas ocultas en la pantalla.
     for count in range(64):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
-
+    
+    # Se verifica si hay una ficha seleccionada, y si es así, se muestra la letra en su centro.
     mark = state['mark']
-
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        #se centran los caractéres correspondientes en el cuadrado
+        goto(x + 16, y + 10)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 20, 'normal'))
 
     if all(item == False for item in hide):
         #se llama a la función message para alertar que se ha terminado el juego
         message("Fin del juego")
-
+    
+    # Se actualiza la información del número de taps
     update_taps()
+    # Se refresca la pantalla
     update()
+    #Delay que llama a la función cada 100 ms
     ontimer(draw, 100)
 
 
-#FUNCION PARA MOSTRAR EL MENSAJE ENCIMA DE LA CUADRICULA
+
 def message(message):
-    "Display message above the grid."
+    '''FUNCION PARA MOSTRAR EL MENSAJE ENCIMA DE LA CUADRICULA '''
     up()
     goto(0, 250)
     color('black')
     write('Alerta: '+ message, font=('Arial', 50, 'normal'), align="center")
 
-#FUNCION PARA MOSTRAR LOS TAPS
+
 def update_taps():
+    '''FUNCION PARA MOSTRAR LOS TAPS '''
     up()
     goto(-180,200)
     color ('black')
     write('Taps: '+str(taps), font =('Arial', 18, 'normal'))
-    
+
+#se insertan "aleatoriamente" los caractéres
 shuffle(tiles)
+#dimensiones
 setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
+#se llaman a las funciones
 onscreenclick(tap)
 draw()
 done()
