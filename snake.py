@@ -1,4 +1,5 @@
-#Se importan librerías
+#Se importan librerías y recursos necesarios.
+import random
 from random import randrange
 from turtle import *
 
@@ -10,9 +11,11 @@ from freegames import square, vector
  en la posición inicial (10, 0), se inicializa la variable 'aim' 
  que contiene la dirección en la que se moverá la serpiente
  '''
+# Se inicializan las variables y las coordenadas de "spawn".
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+#Se utiliza random.randint para poder tener una gama de 5 colores diferentes al empezar el juego.
 color1 = random.randint(1,5)
 color2 = random.randint(1,5)
 #if para los 5 colores aleatorios
@@ -44,18 +47,20 @@ else:
 
 
 def change(x, y):
-    """Change snake direction."""
+    '''Función que realiza los cambios de dirección de la serpiente '''
+    # direcciones en eje 'x' y 'y'
     aim.x = x
     aim.y = y
 
 
 def inside(head):
-    """Return True if head inside boundaries."""
+    """Función que  verifica si la cabeza de la serpiente se encuentra dentro de la ventana,
+se regresa True si es el caso."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
-'''Se añade la función que hace que la comida se mueva un paso a la vez a cierta posición aleatoria'''
+
 def move_food():
-    """Move food one segment in a random direction."""
+    '''Se añade la función que hace que la comida se mueva un paso a la vez a cierta posición aleatoria'''
     directions = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
     direction = directions[randrange(4)]
     
@@ -73,7 +78,7 @@ def move_food():
 
 
 def move():
-    """Move snake forward one segment."""
+    '''Función que mueve a la serpiente un segmento a la vez.'''
     #se copia el ultimo segmento de la serpiente para convertirlo en la nueva cabeza
     head = snake[-1].copy()
     head.move(aim)
