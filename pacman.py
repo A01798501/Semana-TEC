@@ -1,7 +1,7 @@
 from random import choice
 from turtle import *
 from freegames import floor, vector
-
+#Este bloque 
 state = {'score': 0}
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
