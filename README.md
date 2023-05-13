@@ -5,6 +5,9 @@ Como proyecto, se tuvo que actualizar y hacer ciertas mejoras a 5 códigos, en e
 programados y/o realizados con freegames, en todos los casos las mejoras son para poder tener una mejor experiencia de
 jugabilidad, a continuación se enlistarán los juegos con sus correspondientes mejoras.
 
+# Link para el video
+https://drive.google.com/file/d/12FyL9_Upumhm3Wr7U45wxaU3VXaY_mrc/view?usp=sharing
+
 # 1. Juego Pintado.
     a) Un color nuevo.
     Para esto solo se uso la sintaxis de los demás colores y se optó por el amarillo
@@ -286,6 +289,8 @@ se puede ejecutar usando el comando 'python "file_name"', en todo caso que esto 
 con 'python3' a la fecha y versión que se crea este archivo.
 
 image.png
+
+# Como ejecutar los juegos.
 
 
 
